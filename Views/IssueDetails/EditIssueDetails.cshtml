@@ -1,0 +1,91 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model TicketingSystem.Models.IssueDetailsModel
+
+<html>
+<head>
+
+</head>
+<body>
+    <form asp-action="UpdateIssue">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    Project Name
+                    <span class="text-danger">*</span>
+                    @if(Model.IssueStatusId == 1)
+                    {
+                        <select class="form-control" asp-for="ProjectId" asp-items="@(new SelectList(ViewBag.Project,"ProjectId","ProjectName"))">
+                            <option value="">Please Select</option>
+                        </select>
+                        
+                    }
+                    else
+                    {
+                        <select class="form-control" disabled asp-for="ProjectId" asp-items="@(new SelectList(ViewBag.Project,"ProjectId","ProjectName"))">
+                            <option value="">Please Select</option>
+                        </select>
+                        <input hidden asp-for="ProjectId" />
+                    }
+                    <span asp-validation-for="ProjectId" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    Serverity
+                    <span class="text-danger">*</span>
+                    @if (Model.IssueStatusId == 1)
+                    {
+                        <select class="form-control" asp-for="ServerityId" asp-items="@(new SelectList(ViewBag.Serverity,"ServerityId","ServerityName"))">
+                            <option value="">Please Select</option>
+                        </select>
+                    }
+                    else
+                    {
+                        <select class="form-control" disabled asp-for="ServerityId" asp-items="@(new SelectList(ViewBag.Serverity,"ServerityId","ServerityName"))">
+                            <option value="">Please Select</option>
+                        </select>
+                        <input hidden asp-for="ServerityId" />
+                    }
+                    <span asp-validation-for="ServerityId" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    Issue Status
+                    <span class="text-danger">*</span>
+                    <select class="form-control" asp-for="IssueStatusId" asp-items="@(new SelectList(ViewBag.IssueStatus,"IssueStatusId","IssueStatusName"))">
+                        <option value="">Please Select</option>
+                    </select>
+                    <span asp-validation-for="IssueStatusId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:25px">
+                <div class="col-md-4">
+                    Environment Type
+                    <span class="text-danger">*</span>
+                    <input type="text" class="form-control" asp-for="EnvironmentType" />
+                    <span asp-validation-for="EnvironmentType" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    Issue Description
+                    <span class="text-danger">*</span>
+                    <textarea type="text" class="form-control" asp-for="IssueDescription"></textarea>
+                    <span asp-validation-for="IssueDescription" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row" style="padding-top:25px">
+                <div class="col-md-4">
+                    <input  hidden asp-for="IssueDetailsId"/>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    @section Scripts{
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>

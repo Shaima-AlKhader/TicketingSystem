@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Add New Project";
+}
+@model TicketingSystem.Models.ProjectModel;
+<html>
+    <head>
+
+    </head>
+    <body>
+     <form asp-action="SaveNewProject">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    Project Name
+                    <span class="text-danger">*</span>
+                    <input type="text" asp-for="ProjectName" class="form-control"/>
+                    <span asp-validation-for="ProjectName" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    Client Name
+                    <span class="text-danger">*</span>
+                    <input type="text" asp-for="ClientName" class="form-control" />
+                    <span asp-validation-for="ClientName" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                     Client Contact Person
+                     <span class="text-danger">*</span>
+                     <input type="text" asp-for="ClientContactPerson" class="form-control" />
+                     <span asp-validation-for="ClientContactPerson" class="text-danger"></span>
+                </div>   
+            </div>
+            <div class="row" style="padding-top:25px">
+               <div class="col-md-4">
+                   Deliver Date
+                   <span class="text-danger">*</span>
+                   <input type="date" asp-for="DeliverDate" class="form-control" />
+                   <span asp-validation-for="DeliverDate" class="text-danger"></span>
+               </div>
+               <div class="col-md-4">
+                    Is Under Support
+                    <span class="text-danger">*</span>
+                   <br/>
+                   <input type="radio" value="true" asp-for="IsUnderSupport" class="custom-radio" />Yes
+                   <input type="radio" value="false" asp-for="IsUnderSupport" class="custom-radio" />No
+                   <span asp-validation-for="IsUnderSupport" class="text-danger"></span>
+               </div>
+            </div>
+            <div class="row" style="padding-top:25px">
+                <div class="col-md-4" >
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+     </form>
+    @section Scripts{
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+    </body>
+</html>

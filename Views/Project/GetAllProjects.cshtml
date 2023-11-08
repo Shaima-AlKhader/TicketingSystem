@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<TicketingSystem.Models.ProjectModel>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    </head>
+    <body>
+    <h3 style="text-align:center">Get All Projects</h3>
+        <a href="AddNewProject" style="padding-bottom:25px; text-decoration: none;" class="fas fa-plus-circle">
+        Add new ProjectS
+        </a>
+        <form asp-action="GetAllProjects">
+            <table class="table table-striped" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Project Name</th>
+                    <th>Client Name</th>
+                    <th>Client Contact Person</th>
+                    <th>Deliver Date</th>
+                    <th>Is Under Support</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                   @foreach(TicketingSystem.Models.ProjectModel item in Model)
+                   {
+                       <tr>
+                           <td>@item.ProjectName</td>
+                           <td>@item.ClientName</td>
+                           <td>@item.ClientContactPerson</td>
+                           <td>@item.DeliverDate.ToString("dd-MMM-yyyy")</td>
+                           @if (item.IsUnderSupport)
+                           {
+                              <td>Yes</td>
+                           }
+                           else
+                           {
+                              <td>No</td>
+                           }
+                           <td>
+                            <a style="text-decoration: none;" asp-controller="Project" asp-action="EditProject" asp-route-ID="@item.ProjectId" class="fas fa-edit"></a>
+                            <a style="text-decoration: none;" asp-controller="Project" asp-action="DeleteProject" asp-route-ID="@item.ProjectId" class="fas fa-trash-alt"></a>
+                        </td>
+                       </tr>
+                   }
+                </tbody>
+            </table>
+        </form>
+    </body>
+</html>

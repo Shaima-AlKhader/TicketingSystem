@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<TicketingSystem.Models.IssueDetailsLogModel>
+
+
+<html>
+<head>
+
+</head>
+<body>
+    <h3>Get All Details for Issue</h3>
+
+    <form asp-action="ViewLogTransaction">
+
+        <table class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Issue Status Name</th>
+                    <th>Action Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (TicketingSystem.Models.IssueDetailsLogModel item in Model)
+                {
+                    <tr>
+                        <td>@item.IssueStatusName</td>
+                        <td>@item.ActionDate.ToString("dd-MMM-yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+
+</body>
+</html>
+
